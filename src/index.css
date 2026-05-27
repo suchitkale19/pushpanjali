@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-background: var(--background);
+  --color-text: var(--text);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --font-logo: var(--font-logo);
+  --font-body: var(--font-body);
+}
+
+:root {
+  --primary: #1f4d34;
+  --background: #fffaf0;
+  --text: #2d2a26;
+  --border: #eadfcb;
+  --accent: #d94f70;
+
+  --font-logo: "Cormorant Garamond", serif;
+  --font-body: "Poppins", sans-serif;
+}

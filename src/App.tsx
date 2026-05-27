@@ -1,3 +1,9 @@
+import Homepage from "./pages/Homepage";
+
 export default function App() {
-  return <div>App</div>;
+  return (
+    <div className="bg-background">
+      <Homepage />
+    </div>
+  );
 }

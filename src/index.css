@@ -1,4 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-logo: "Cormorant Garamond", serif;
+  --font-body: "Poppins", sans-serif;
+}
 
 @theme inline {
   --color-primary: var(--primary);
@@ -6,8 +12,7 @@
   --color-text: var(--text);
   --color-border: var(--border);
   --color-accent: var(--accent);
-  --font-logo: var(--font-logo);
-  --font-body: var(--font-body);
+  --color-secondary: var(--secondary);
 }
 
 :root {
@@ -16,7 +21,5 @@
   --text: #2d2a26;
   --border: #eadfcb;
   --accent: #d94f70;
-
-  --font-logo: "Cormorant Garamond", serif;
-  --font-body: "Poppins", sans-serif;
+  --secondary: #f8ebdd;
 }

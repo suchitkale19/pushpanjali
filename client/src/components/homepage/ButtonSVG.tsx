@@ -5,7 +5,7 @@ interface svg {
 
 export default function ButtonSVG({ path, name }: svg) {
   return (
-    <button className="flex gap-1 text-text font-semibold items-center text-sm border-2 border-border p-2 rounded-xl    ">
+    <button className="flex gap-1 text-text font-semibold items-center text-sm  p-2 rounded-xl hover:bg-secondary transition-all ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"

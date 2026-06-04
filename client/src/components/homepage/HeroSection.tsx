@@ -1,6 +1,8 @@
 // import ButtonSVG from "./ButtonSVG";
 // import type { ReactNode } from "react";
 
+import MainButton from "./MainButton";
+
 export default function HeroSection() {
   // const functionsSvg = [
   //   {
@@ -24,25 +26,14 @@ export default function HeroSection() {
   return (
     <div className="h-80 w-full flex text-text bg-secondary">
       <div className="pl-30 h-full w-full flex flex-col justify-center gap-6">
-        <h1 className="text-5xl font-semibold font-logo">
+        <h1 className="text-5xl text-primary font-semibold font-logo">
           Make Every Occasion Bloom with{" "}
-          <span className="text-pink-600">Love</span>
+          <span className="text-accent">Love</span>
         </h1>
         <p className="w-80">
           Beautiful flowers, Traditional Touch, Unforgetteble Moments.
         </p>
-        <button className="flex bg-primary w-fit px-4 py-2 text-background rounded-lg">
-          Shop Now{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-            fill="#fffaf0"
-          >
-            <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
-          </svg>
-        </button>
+        <MainButton name={"Shop Now"} bg={"primary"} />
       </div>
       <div className="h-80 w-[160%] bg-cover bg-[url(/src/assets/herobanner.png)]">
         <div className="w-full h-full bg-linear-to-l  via-transparent via-90% to-[#f8ebdd]"></div>

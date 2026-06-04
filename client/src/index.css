@@ -13,6 +13,8 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-secondary: var(--secondary);
+  --color-hover: var(--hover);
+  --color-gold: var(--gold);
 }
 
 :root {
@@ -22,4 +24,6 @@
   --border: #eadfcb;
   --accent: #d94f70;
   --secondary: #f8ebdd;
+  --hover: #1b422c;
+  --gold: #d4af37;
 }

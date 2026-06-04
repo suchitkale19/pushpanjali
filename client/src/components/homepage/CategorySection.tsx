@@ -13,16 +13,16 @@ export default function CategorySection() {
   ];
 
   return (
-    <div className="h-48 w-full flex justify-evenly items-center ">
+    <div className="h-48 w-full flex justify-evenly items-center text-text text-sm ">
       {categories.map((category): ReactNode => {
         return (
           <div key={category}>
             <img
-              className="size-28 border-2 border-border rounded-full"
+              className="size-28 border-2 border-border rounded-full pb-2"
               src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
               alt={category}
             />
-            <p>{category}</p>
+            <p className="font-semibold hover:text-black">{category}</p>
           </div>
         );
       })}

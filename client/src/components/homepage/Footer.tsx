@@ -4,6 +4,7 @@ import { FaInstagramSquare } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Logo from "./Logo";
 
 export default function Footer() {
   const footerSections = [
@@ -21,23 +22,28 @@ export default function Footer() {
     },
   ];
   return (
-    <div className="bg-hover flex py-4 text-background justify-evenly px-12">
-      {footerSections.map((section): ReactNode => {
-        return (
-          <div key={section.title} className="px-8 border-r">
-            <h2 className="font-logo font-semibold text-xl">{section.title}</h2>
-            <p className="text-sm">{section.para}</p>
+    <div className="bg-background w-fit h-fit flex flex-col items-center gap-4">
+      <Logo />
+      <div className="bg-hover flex py-4 text-background justify-evenly px-12">
+        {footerSections.map((section): ReactNode => {
+          return (
+            <div key={section.title} className="px-8 border-r">
+              <h2 className="font-logo font-semibold text-xl">
+                {section.title}
+              </h2>
+              <p className="text-sm">{section.para}</p>
+            </div>
+          );
+        })}
+        <div className="px-8">
+          <h2 className="font-logo font-semibold text-xl">Follow Us</h2>
+          <div className="flex gap-4 pt-2">
+            <FaFacebook size={24} />
+            <FaInstagramSquare size={24} />
+            <FaPinterest size={24} />
+            <FaWhatsappSquare size={24} />
+            <FaYoutube size={24} />
           </div>
-        );
-      })}
-      <div className="px-8">
-        <h2 className="font-logo font-semibold text-xl">Follow Us</h2>
-        <div className="flex gap-4 pt-2">
-          <FaFacebook size={24} />
-          <FaInstagramSquare size={24} />
-          <FaPinterest size={24} />
-          <FaWhatsappSquare size={24} />
-          <FaYoutube size={24} />
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ export default function navbar() {
   ];
 
   return (
-    <div className="h-22 w-full flex text-text justify-between items-center px-16 border-y-2 border-border">
+    <div className="bg-background h-22 w-full flex text-text justify-between items-center px-16 border-y-2 border-border">
       <Logo />
 
       <div className="flex">

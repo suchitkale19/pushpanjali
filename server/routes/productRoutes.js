@@ -1,6 +1,9 @@
 const express = require("express");
 
 const {
+  aliasBestSeller,
+  getProductStats,
+  getFlowersUsed,
   getProducts,
   getSingleProduct,
   addProducts,
@@ -9,6 +12,11 @@ const {
 } = require("./../controllers/productControllers");
 
 const router = express.Router();
+
+router.route("/best-seller").get(aliasBestSeller, getProducts);
+
+router.route("/product-stats").get(getProductStats);
+router.route("/flower-used").get(getFlowersUsed);
 
 router.route("/").get(getProducts).post(addProducts);
 router

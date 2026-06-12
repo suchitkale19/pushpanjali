@@ -1,56 +1,29 @@
 const Product = require("./../model/productModel");
-const qs = require("qs");
 
-class APIFeatures {
-  constructor(queryModel, queryExpress) {
-    queryModel = this.queryModel;
-    queryExpress = this.queryExpress;
-  }
+const APIFeatures = require("./../utils/appFeatures");
 
-  filter() {}
-}
+exports.aliasBestSeller = (req, res, next) => {
+  req.alias = {
+    limit: "5",
+    sort: "-rating,price",
+    fields: "title,rating,price",
+  };
+
+  next();
+};
 
 exports.getProducts = async (req, res) => {
   try {
-    let queryObj = { ...req.query };
-    queryObj = qs.parse(queryObj);
+    const queryData = { ...req.query, ...(req.alias || {}) };
 
-    const excludeFields = ["page", "sort", "limit", "fields"];
-    excludeFields.forEach((el) => delete queryObj[el]);
+    const features = new APIFeatures(Product.find(), queryData)
+      .filter()
+      .sort()
+      .fields()
+      .paginate();
 
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    const products = await features.query;
 
-    let query = Product.find(JSON.parse(queryStr));
-
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(",").join(" ");
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort("title");
-    }
-
-    if (req.query.fields) {
-      fields = req.query.fields.split(",").join(" ");
-      query = query.select(fields);
-    } else {
-      query = query.select("-__v");
-    }
-
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 100;
-    const skip = (page - 1) * limit;
-    // 1 10  11 20 (page-1)*limit    1 (2-1)*10
-    query = query.skip(skip).limit(limit);
-
-    if (req.query.page) {
-      const numProducts = await Product.countDocuments();
-      if (skip > numProducts) {
-        throw new Error("Products not exists");
-      }
-    }
-
-    const products = await query;
     res.status(200).json({
       status: "success",
       results: products.length,
@@ -118,7 +91,7 @@ exports.updateProducts = async (req, res) => {
 exports.deleteProducts = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
-    res.status(20).json({
+    res.status(200).json({
       status: "success",
       data: {
         product,
@@ -128,6 +101,86 @@ exports.deleteProducts = async (req, res) => {
     res.status(400).json({
       status: "Failed",
       message: err,
+    });
+  }
+};
+
+exports.getProductStats = async (req, res) => {
+  try {
+    const stats = await Product.aggregate([
+      {
+        $match: { rating: { $gte: 4.7 } },
+      },
+      {
+        $group: {
+          _id: "$rating",
+          numProducts: { $sum: 1 },
+          ratingAvg: { $avg: "$rating" },
+          priceAvg: { $avg: "$price" },
+          minPrice: { $min: "$price" },
+          maxPrice: { $max: "$price" },
+        },
+      },
+      {
+        $sort: { rating: -1 },
+      },
+    ]);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        stats,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err.message,
+    });
+  }
+};
+
+exports.getFlowersUsed = async (req, res) => {
+  try {
+    const stats = await Product.aggregate([
+      {
+        $unwind: "$includes",
+      },
+      {
+        $match: { rating: { $gte: 4.5 } },
+      },
+      {
+        $group: {
+          _id: "$includes",
+          numProducts: { $sum: 1 },
+          ratingAvg: { $avg: "$rating" },
+          priceAvg: { $avg: "$price" },
+        },
+      },
+      {
+        $sort: { numProducts: -1 },
+      },
+      {
+        $addFields: { flower: "$_id" },
+      },
+      {
+        $project: { _id: 0 },
+      },
+      {
+        $limit: 10,
+      },
+    ]);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        stats,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err.message,
     });
   }
 };

@@ -11,6 +11,8 @@ const {
   deleteProducts,
 } = require("./../controllers/productControllers");
 
+const { protect } = require("./../controllers/authController");
+
 const router = express.Router();
 
 router.route("/best-seller").get(aliasBestSeller, getProducts);
@@ -18,7 +20,7 @@ router.route("/best-seller").get(aliasBestSeller, getProducts);
 router.route("/product-stats").get(getProductStats);
 router.route("/flower-used").get(getFlowersUsed);
 
-router.route("/").get(getProducts).post(addProducts);
+router.route("/").get(protect, getProducts).post(addProducts);
 router
   .route("/:id")
   .get(getSingleProduct)

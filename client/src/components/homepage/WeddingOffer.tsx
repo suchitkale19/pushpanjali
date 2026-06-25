@@ -10,7 +10,7 @@ export default function WeddingOffer() {
         UP To <span className="text-gold font-body font-semibold">25%</span> OFF
       </h1>
       <p className="p-2 font-logo font-bold rounded-2xl w-fit text-lg  bg-[#bea656] text-primary">
-        ON WEDDDING DECORATIONS
+        ON WEDDING DECORATIONS
       </p>
       <p className="w-fit h-fit text-xl p-2 border-2 border-dashed border-gold">
         USE CODE: <span className="font-bold text-accent">SHAADI25</span>

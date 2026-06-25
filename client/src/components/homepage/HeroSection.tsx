@@ -31,7 +31,7 @@ export default function HeroSection() {
           <span className="text-accent">Love</span>
         </h1>
         <p className="w-80">
-          Beautiful flowers, Traditional Touch, Unforgetteble Moments.
+          Beautiful flowers, Traditional Touch, Unforgettable Moments.
         </p>
         <MainButton name={"Shop Now"} bg={"primary"} />
       </div>

@@ -43,7 +43,7 @@ export default function OfferSection() {
     <div className=" flex flex-col items-center text-text">
       <Title
         name={"Offers Just For You"}
-        para={"Offer's , So You Get Your Product At Minimal Price"}
+        para={"Offers , So You Get Your Product At Minimal Price"}
       />
       <div className="w-full  px-16 pb-8 flex justify-between">
         {newOffers.map((offer): ReactNode => {

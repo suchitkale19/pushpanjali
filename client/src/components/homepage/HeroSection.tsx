@@ -24,18 +24,23 @@ export default function HeroSection() {
   //         })}
   //       </div>
   return (
-    <div className="h-80 w-full flex text-text bg-secondary">
-      <div className="pl-30 h-full w-full flex flex-col justify-center gap-6">
-        <h1 className="text-5xl text-primary font-semibold font-logo">
+    <div className="lg:h-80 h-fit w-full flex text-text bg-secondary ">
+      <div className="lg:pl-30 px-2 h-full w-full lg:text-left text-center flex flex-col lg:items-start items-center py-2 lg:py-0 justify-center lg:gap-6 gap-3 ">
+        <img
+          className="lg:hidden"
+          src="/src/assets/herobanner.png"
+          alt="herobanner"
+        />
+        <h1 className="lg:text-5xl text-4xl text-primary  font-semibold font-logo">
           Make Every Occasion Bloom with{" "}
           <span className="text-accent">Love</span>
         </h1>
-        <p className="w-80">
+        <p className="lg:w-80 w-full">
           Beautiful flowers, Traditional Touch, Unforgettable Moments.
         </p>
         <MainButton name={"Shop Now"} bg={"primary"} />
       </div>
-      <div className="h-80 w-[160%] bg-cover bg-[url(/src/assets/herobanner.png)]">
+      <div className="lg:block hidden h-80 w-[160%] bg-cover bg-[url(/src/assets/herobanner.png)]">
         <div className="w-full h-full bg-linear-to-l  via-transparent via-90% to-[#f8ebdd]"></div>
       </div>
     </div>

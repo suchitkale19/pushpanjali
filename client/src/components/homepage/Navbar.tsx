@@ -1,4 +1,5 @@
 import ButtonSVG from "./ButtonSVG";
+import SearchBar from "./SearchBar";
 import type { ReactNode } from "react";
 import Logo from "./Logo";
 
@@ -19,21 +20,17 @@ export default function navbar() {
   ];
 
   return (
-    <div className="bg-background h-22 w-full flex text-text justify-between items-center px-16 border-y-2 border-border">
+    <div className="bg-background lg:h-22 h-16 w-full flex text-text justify-between items-center lg:px-16 px-4 border-y-2 border-border">
       <Logo />
 
-      <div className="flex">
-        <input
-          className="h-10 rounded-l-lg w-96 px-4 border-2 border-border"
-          type="text"
-          placeholder="Search for torans, decorations, flowers..."
-        />
-        <button className="h-10 w-10 bg-primary flex justify-center items-center rounded-r-lg ">
-          <img className="h-6" src="/src/assets/search.svg" alt="search" />
-        </button>
+      <div className="lg:block hidden">
+        <SearchBar />
       </div>
 
-      <div className="flex gap-8 ">
+      <div className="flex items-center lg:gap-8 sm:gap-2 ">
+        <button className="lg:hidden h-8 w-8 bg-primary flex justify-center items-center rounded-lg ">
+          <img className="h-6" src="/src/assets/search.svg" alt="search" />
+        </button>
         {svgArr.map((svg): ReactNode => {
           return <ButtonSVG path={svg.path} name={svg.name} key={svg.name} />;
         })}

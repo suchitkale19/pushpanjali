@@ -13,6 +13,26 @@ const signToken = (id) => {
   });
 };
 
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+    ),
+    httpOnly: true,
+  };
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+
+  res.cookie("jwt", token, cookieOptions);
+  res.status(200).json({
+    status: "success",
+    token,
+    data: {
+      user,
+    },
+  });
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -21,15 +41,8 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     confirmPassword: req.body.confirmPassword,
   });
-  const token = signToken(newUser._id);
 
-  res.status(200).json({
-    status: "success",
-    token,
-    data: {
-      user: newUser,
-    },
-  });
+  createSendToken(newUser, 201, res);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -42,26 +55,53 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   //2) Check if the provided password or email are valid
-  const user = await User.findOne({ email }).select("+password");
+  const user = await User.findOne({ email })
+    .select("+password")
+    .select("+passwordAttempted");
+
+  if (user.failLoginDate > Date.now()) {
+    return next(
+      new AppError(
+        "You Have got a password timeout Please wait for 10 minutes before login in",
+        403,
+      ),
+    );
+  }
+
   const correct = await user.checkPassword(password, user.password);
 
   if (!user || !correct) {
+    // when the user is loggin in with wrong password again and again
+    user.passwordAttempted =
+      (user.passwordAttempted === undefined ? 0 : user.passwordAttempted) + 1;
+    await user.save({ validateBeforeSave: false });
+    if (user.passwordAttempted > 3) {
+      user.failLoginDate = Date.now() + 1 * 60 * 1000;
+      await user.save({ validateBeforeSave: false });
+      return next(
+        new AppError(
+          "You have exceded the login limit ! Please try again after 10 minutes",
+          403,
+        ),
+      );
+    }
+
     return next(new AppError("Please provide valid email or password", 400));
   }
-  //3) if everything is ok then send the token
-  const token = signToken(user._id);
 
-  res.status(200).json({
-    status: "success",
-    token,
-  });
+  user.passwordAttempted = undefined;
+  user.failLoginDate = undefined;
+  user.save({ validateBeforeSave: false });
+
+  //3) if everything is ok then send the token
+  createSendToken(user, 200, res);
 });
 
 exports.protect = async (req, res, next) => {
   // 1)check if there is a token
   let token;
   if (
-    req.headers.authorization ||
+    req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
@@ -162,21 +202,20 @@ exports.resetPassword = async (req, res, next) => {
   user.resetTokenExpiresIn = undefined;
   user.save();
 
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: "success",
-    token,
-  });
+  createSendToken(user, 200, res);
 };
 
 exports.updatePassword = async (req, res, next) => {
-  const user = await User.findById(req.params.id).select("+password");
+  const user = await User.findById(req.user.id).select("+password");
   if (!user) {
     return next(new AppError("No user found with this ID!", 404));
   }
 
-  const correct = await user.checkPassword(req.body.password, user.password);
-  if (correct) {
+  const correct = await user.checkPassword(
+    req.body.currentPassword,
+    user.password,
+  );
+  if (!correct) {
     return next(new AppError("Please provide valid Password", 403));
   }
 
@@ -184,9 +223,5 @@ exports.updatePassword = async (req, res, next) => {
   user.confirmPassword = req.body.confirmPassword;
   user.save();
 
-  const token = signToken(user._id);
-  res.status(200).json({
-    status: "success",
-    token,
-  });
+  createSendToken(user, 200, res);
 };

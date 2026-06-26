@@ -15,7 +15,7 @@ export default function ButtonSVG({ path, name }: svg) {
       >
         <path d={path} />
       </svg>
-      <h1>{name}</h1>
+      <h1 className="hidden lg:block">{name}</h1>
     </button>
   );
 }

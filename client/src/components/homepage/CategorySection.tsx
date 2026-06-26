@@ -13,16 +13,19 @@ export default function CategorySection() {
   ];
 
   return (
-    <div className="h-48 w-full flex justify-evenly items-center text-text text-sm ">
+    <div className="lg:h-48 h-auto w-full flex justify-evenly items-center gap-2 px-2 py-2  flex-wrap text-text text-sm ">
       {categories.map((category): ReactNode => {
         return (
-          <div key={category}>
+          <div
+            className="flex flex-col justify-center items-center"
+            key={category}
+          >
             <img
-              className="size-28 border-2 object-cover object-center bg-background border-border rounded-full pb-2"
+              className="lg:size-28 size-20 border-2 object-cover object-center bg-background border-border rounded-full pb-2"
               src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
               alt={category}
             />
-            <p className="w-full text-center font-semibold hover:text-black">
+            <p className="lg:w-full lg:block hidden w-16 text-center font-semibold hover:text-black">
               {category}
             </p>
           </div>

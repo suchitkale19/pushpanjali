@@ -1,7 +1,7 @@
 export default function MainButton({ name, bg }: { name: string; bg: string }) {
   return (
     <button
-      className={`flex bg-${bg} hover:bg-hover w-fit px-4 py-2 text-background rounded-lg`}
+      className={`flex bg-${bg} hover:bg-hover lg:w-fit w-52 justify-center px-4 py-2 text-background rounded-lg`}
     >
       {name}
       <svg

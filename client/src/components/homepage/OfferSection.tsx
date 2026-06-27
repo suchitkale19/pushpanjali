@@ -36,7 +36,7 @@ export default function OfferSection() {
       offer: "FLAT ₹500 OFF",
       info: "On Wedding Packages",
       add: true,
-      code: "SAVE500",
+      code: "SA500",
     },
   ];
   return (
@@ -45,7 +45,7 @@ export default function OfferSection() {
         name={"Offers Just For You"}
         para={"Offers , So You Get Your Product At Minimal Price"}
       />
-      <div className="w-full  px-16 pb-8 flex justify-between">
+      <div className="w-full  lg:px-16 px-2 pb-8 flex flex-wrap justify-between">
         {newOffers.map((offer): ReactNode => {
           return (
             <OfferCard
@@ -59,7 +59,7 @@ export default function OfferSection() {
           );
         })}
       </div>
-      <div className="h-fit w-full px-4">
+      <div className="h-fit lg:block hidden w-full px-4">
         <div className="h-84 px-20 flex justify-between py-8 text-background w-full border-8 bg-cover bg-center rounded bg-[url(src/assets/offerbg0.png)]">
           <WeddingOffer />
           <WeddingDecorCategory />

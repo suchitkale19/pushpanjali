@@ -16,14 +16,14 @@ export default function OfferCard({
   code,
 }: offer) {
   return (
-    <div className="h-40 w-80  bg-cover bg-[url(/src/assets/offerbg2.jpg)] rounded-2xl border-2 border-border flex pt-2 justify-evenly items-center">
+    <div className="lg:h-40 h-32 lg:w-80 w-44 bg-cover bg-[url(/src/assets/offerbg2.jpg)] px-2 rounded-2xl border-2 border-border flex pt-2 justify-evenly items-center gap-1">
       {component}
       <div>
-        <h2 className="font-bold w-40">{offer}</h2>
-        <p className="w-40">{info}</p>
+        <h2 className="font-bold lg:text-lg text-sm  lg:w-40 w-28">{offer}</h2>
+        <p className="lg:w-40 w:32 lg:text-m text-sm">{info}</p>
         {add && (
-          <p className="border border-dashed p-1">
-            Use Code: <span className="font-bold ">{code}</span>
+          <p className="border lg:text:lg text-sm border-dashed p-1">
+            Code: <span className=" font-bold ">{code}</span>
           </p>
         )}
       </div>

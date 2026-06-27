@@ -1,7 +1,9 @@
+import type { ReactNode } from "react";
+
 export default function BestSellerSection() {
   return (
     <div>
-      <div className="w-full flex justify-between px-16 py-4 text-text">
+      <div className="w-full flex  justify-between lg:px-16 px-4 py-4 text-text">
         <h1 className="text-3xl font-logo font-bold">Best Seller</h1>
         <h2 className="flex gap-1 font-semibold hover:text-black">
           View All{" "}
@@ -16,74 +18,25 @@ export default function BestSellerSection() {
           </svg>
         </h2>
       </div>
-      <div className="flex px-16 justify-between">
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000
-            <span className="text-sm font-extralight line-through">₹28000</span>
-          </h1>
-        </div>
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000<span className="text-sm font-extralight">₹28000</span>
-          </h1>
-        </div>
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000<span className="text-sm font-extralight">₹28000</span>
-          </h1>
-        </div>
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000<span className="text-sm font-extralight">₹28000</span>
-          </h1>
-        </div>
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000<span className="text-sm font-extralight">₹28000</span>
-          </h1>
-        </div>
-        <div className="text-text text-sm ">
-          <img
-            className="h-40 w-52 rounded-xl"
-            src="/src/assets/weddingdecor.png"
-            alt="cardImage"
-          />
-          <p className="px-2">WEdding Decorations</p>
-          <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
-            ₹25000<span className="text-sm font-extralight">₹28000</span>
-          </h1>
-        </div>
+      <div className="flex flex-wrap lg:px-16 px-2 gap-1 justify-between">
+        {[1, 2, 3, 4, 5, 6].map((el: number): ReactNode => {
+          return (
+            <div key={el} className="text-text text-sm ">
+              <img
+                className="lg:h-40 h-32 lg:w-52 w-44 rounded-xl"
+                src="/src/assets/weddingdecor.png"
+                alt="cardImage"
+              />
+              <p className="px-2">WEdding Decorations</p>
+              <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
+                ₹25000
+                <span className="text-sm font-extralight line-through">
+                  ₹28000
+                </span>
+              </h1>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

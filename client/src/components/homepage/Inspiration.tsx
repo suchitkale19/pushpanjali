@@ -9,7 +9,7 @@ export default function Inspiration() {
   }
 
   const imageArr: bentoImgs[] = [
-    { name: "Stage Decoration", image: "bento3", grid: "row-span-2" },
+    { name: "Stage Decoration", image: "bento3", grid: "lg:row-span-2" },
     { name: "Car Decoration", image: "bento2" },
     { name: "Haldi Decoration", image: "bento4" },
     { name: "Flower Decorations", image: "bento9", grid: "row-span-2" },
@@ -31,16 +31,16 @@ export default function Inspiration() {
         para={"Explore The Beauty from Every Occasion"}
       />
 
-      <div className="h-160 w-300 grid grid-cols-4 grid-rows-4 gap-2">
+      <div className="lg:h-160 h-fit w-fit lg:w-300 grid lg:grid-cols-4 lg:grid-rows-4 gap-2">
         {imageArr.map((img): ReactNode => {
           return (
             <div
               key={img.name}
-              className={`${img.grid ? img.grid : ""} border-2 border-border bg-cover bg-center rounded-lg  overflow-hidden relative`}
+              className={`${img.grid ? `${img.grid}` : ""} border-2 border-border bg-cover bg-center rounded-lg  overflow-hidden relative`}
             >
               <h1
                 className="w-full flex items-end text-center font-logo font-bold text-background backdrop-blur-2xl duration-300 justify-center py-1 absolute z-50 bottom-0   
-               text-2xl "
+               lg:text-2xl text:xl "
               >
                 {img.name}
               </h1>

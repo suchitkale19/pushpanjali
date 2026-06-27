@@ -24,18 +24,21 @@ export default function Footer() {
   return (
     <div className="bg-background w-fit h-fit flex flex-col items-center gap-4">
       <Logo />
-      <div className="bg-hover flex py-4 text-background justify-evenly px-12">
+      <div className="bg-hover lg:flex grid grid-cols-2 py-4 gap-2 text-background justify-evenly lg:px-12">
         {footerSections.map((section): ReactNode => {
           return (
-            <div key={section.title} className="px-8 border-r">
+            <div
+              key={section.title}
+              className="lg:px-8 px-2 py-2 border-r border-b"
+            >
               <h2 className="font-logo font-semibold text-xl">
                 {section.title}
               </h2>
-              <p className="text-sm">{section.para}</p>
+              <p className="lg:text-sm text-xs">{section.para}</p>
             </div>
           );
         })}
-        <div className="px-8">
+        <div className="px-8 border-b">
           <h2 className="font-logo font-semibold text-xl">Follow Us</h2>
           <div className="flex gap-4 pt-2">
             <FaFacebook size={24} />

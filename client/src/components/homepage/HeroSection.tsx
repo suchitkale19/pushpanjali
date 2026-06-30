@@ -38,7 +38,7 @@ export default function HeroSection() {
         <p className="lg:w-80 w-full">
           Beautiful flowers, Traditional Touch, Unforgettable Moments.
         </p>
-        <MainButton name={"Shop Now"} bg={"primary"} />
+        <MainButton name={"Shop Now"} arrow={true} bg={"primary"} />
       </div>
       <div className="lg:block hidden h-80 w-[160%] bg-cover bg-[url(/src/assets/herobanner.png)]">
         <div className="w-full h-full bg-linear-to-l  via-transparent via-90% to-[#f8ebdd]"></div>

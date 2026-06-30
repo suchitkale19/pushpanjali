@@ -16,7 +16,7 @@ export default function OfferCard({
   code,
 }: offer) {
   return (
-    <div className="lg:h-40 h-32 lg:w-80 w-44 bg-cover bg-[url(/src/assets/offerbg2.jpg)] px-2 rounded-2xl border-2 border-border flex pt-2 justify-evenly items-center gap-1">
+    <div className="lg:h-40 h-32 lg:w-80 w-42 bg-cover bg-[url(/src/assets/offerbg2.jpg)] px-2 rounded-2xl border-2 border-border flex pt-2 justify-evenly items-center gap-1">
       {component}
       <div>
         <h2 className="font-bold lg:text-lg text-sm  lg:w-40 w-28">{offer}</h2>

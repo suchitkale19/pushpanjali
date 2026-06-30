@@ -45,7 +45,7 @@ export default function OfferSection() {
         name={"Offers Just For You"}
         para={"Offers , So You Get Your Product At Minimal Price"}
       />
-      <div className="w-full  lg:px-16 px-2 pb-8 flex flex-wrap justify-between">
+      <div className="w-full  lg:px-16 px-2 pb-8 flex flex-wrap justify-center gap-2">
         {newOffers.map((offer): ReactNode => {
           return (
             <OfferCard

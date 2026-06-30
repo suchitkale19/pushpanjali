@@ -13,24 +13,29 @@ export default function CategorySection() {
   ];
 
   return (
-    <div className="lg:h-48 h-auto w-full flex justify-evenly items-center gap-2 px-2 py-2  flex-wrap text-text text-sm ">
-      {categories.map((category): ReactNode => {
-        return (
-          <div
-            className="flex flex-col justify-center items-center"
-            key={category}
-          >
-            <img
-              className="lg:size-28 size-20 border-2 object-cover object-center bg-background border-border rounded-full pb-2"
-              src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
-              alt={category}
-            />
-            <p className="lg:w-full lg:block hidden w-16 text-center font-semibold hover:text-black">
-              {category}
-            </p>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className="w-full flex  justify-between lg:px-16 px-4 py-4 text-text">
+        <h1 className="text-3xl font-logo font-bold">Shop By Categories</h1>
+      </div>
+      <div className="lg:h-40 h-auto w-full flex justify-evenly items-center gap-2 px-2 py-2  flex-wrap text-text text-sm ">
+        {categories.map((category): ReactNode => {
+          return (
+            <div
+              className="flex flex-col justify-center items-center"
+              key={category}
+            >
+              <img
+                className="lg:size-28 size-20 border-2 object-cover object-center bg-background border-border rounded-full pb-2"
+                src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
+                alt={category}
+              />
+              <p className="lg:w-full lg:block hidden w-16 text-center font-semibold hover:text-black">
+                {category}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 }

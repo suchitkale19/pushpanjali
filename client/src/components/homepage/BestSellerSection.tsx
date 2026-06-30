@@ -18,12 +18,12 @@ export default function BestSellerSection() {
           </svg>
         </h2>
       </div>
-      <div className="flex flex-wrap lg:px-16 px-2 gap-1 justify-between">
+      <div className="flex flex-wrap lg:px-16 px-2  gap-2  lg:justify-evenly justify-center">
         {[1, 2, 3, 4, 5, 6].map((el: number): ReactNode => {
           return (
             <div key={el} className="text-text text-sm ">
               <img
-                className="lg:h-40 h-32 lg:w-52 w-44 rounded-xl"
+                className="lg:h-52 h-32 lg:w-52 w-42 rounded-xl"
                 src="/src/assets/weddingdecor.png"
                 alt="cardImage"
               />

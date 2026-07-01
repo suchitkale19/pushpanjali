@@ -18,17 +18,18 @@ export default function BestSellerSection() {
           </svg>
         </h2>
       </div>
-      <div className="flex flex-wrap lg:px-16 px-2  gap-2  lg:justify-evenly justify-center">
+      <div className="flex flex-wrap lg:px-16 px-2  gap-2  lg:justify-between justify-center">
         {[1, 2, 3, 4, 5, 6].map((el: number): ReactNode => {
           return (
             <div key={el} className="text-text text-sm ">
               <img
-                className="lg:h-52 h-32 lg:w-52 w-42 rounded-xl"
+                className="lg:h-64 h-32 lg:w-56 w-42 rounded-xl"
                 src="/src/assets/weddingdecor.png"
                 alt="cardImage"
               />
-              <p className="px-2">WEdding Decorations</p>
-              <h1 className="text-xl px-2 flex items-center gap-1 font-bold">
+              <p className="font-semibold">Wedding Decorations</p>
+              <span>⭐⭐⭐⭐⭐</span>
+              <h1 className="text-lg  flex items-center gap-1 font-bold">
                 ₹25000
                 <span className="text-sm font-extralight line-through">
                   ₹28000

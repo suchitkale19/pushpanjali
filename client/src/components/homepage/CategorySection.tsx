@@ -24,11 +24,13 @@ export default function CategorySection() {
               className="flex flex-col justify-center items-center"
               key={category}
             >
-              <img
-                className="lg:size-28 size-20 border-2 object-cover object-center bg-background border-border rounded-full pb-2"
-                src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
-                alt={category}
-              />
+              <div className="h-fit w-fit rounded-full  overflow-hidden">
+                <img
+                  className="lg:size-32 hover:scale-110 transition-all  size-20 border-2 object-cover object-center bg-background border-border rounded-full"
+                  src={`/src/assets/${category.split(" ").join("").toLowerCase()}.png`}
+                  alt={category}
+                />
+              </div>
               <p className="lg:w-full lg:block hidden w-16 text-center font-semibold hover:text-black">
                 {category}
               </p>
